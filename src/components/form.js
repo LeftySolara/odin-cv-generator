@@ -95,7 +95,6 @@ function GeneralInfoSection({ form }) {
       <TextInput name="Name" form={form} />
       <TextInput name="Email" form={form} />
       <TextInput name="Phone" form={form} />
-      <ButtonBox form={form} />
     </div>
   );
 }
@@ -117,7 +116,6 @@ function EducationSection({ form }) {
       <TextInput name="Field of Study" form={form} />
       <DateInput name="Date Started" form={form} />
       <DateInput name="Date Ended" form={form} />
-      <ButtonBox form={form} />
     </div>
   );
 }
@@ -138,7 +136,6 @@ function ExperienceSection({ form }) {
       <TextInput name="Company Name" form={form} />
       <TextInput name="Position" form={form} />
       <TextAreaInput name="Description" form={form} />
-      <ButtonBox form={form} />
     </div>
   );
 }
@@ -157,6 +154,7 @@ function MainForm() {
       <GeneralInfoSection form={formName} />
       <EducationSection form={formName} />
       <ExperienceSection form={formName} />
+      <ButtonBox form={formName} />
     </form>
   );
 }
