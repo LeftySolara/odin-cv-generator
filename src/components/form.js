@@ -42,6 +42,27 @@ TextInput.propTypes = {
 };
 
 /**
+ * Component containing a textarea input and an associated label.
+ *
+ * @param {Object} props - Props to pass to the component.
+ * @param {String} props.name - The name to use for the label and input field.
+ * @param {String} props.form - The id of the form associated with the component.
+ */
+function TextAreaInput({ name, form }) {
+  return (
+    <div>
+      <label htmlFor={name}>{name}</label>
+      <textarea name={name} form={form} />
+    </div>
+  );
+}
+
+TextAreaInput.propTypes = {
+  name: PropTypes.string.isRequired,
+  form: PropTypes.string.isRequired,
+};
+
+/**
  * Component containing a date input and an associated label.
  *
  * @param {Object} props - Props to pass to the component.
@@ -106,6 +127,27 @@ EducationSection.propTypes = {
 };
 
 /**
+ * Form section for entering experience information.
+ *
+ * @param {String} form - The id of the form associated with this section.
+ */
+function ExperienceSection({ form }) {
+  return (
+    <div>
+      <h2>Experience</h2>
+      <TextInput name="Company Name" form={form} />
+      <TextInput name="Position" form={form} />
+      <TextAreaInput name="Description" form={form} />
+      <ButtonBox form={form} />
+    </div>
+  );
+}
+
+ExperienceSection.propTypes = {
+  form: PropTypes.string.isRequired,
+};
+
+/**
  * The main form.
  */
 function MainForm() {
@@ -114,6 +156,7 @@ function MainForm() {
     <form id={formName} name={formName}>
       <GeneralInfoSection form={formName} />
       <EducationSection form={formName} />
+      <ExperienceSection form={formName} />
     </form>
   );
 }
