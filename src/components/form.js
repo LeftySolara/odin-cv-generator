@@ -62,6 +62,11 @@ DateInput.propTypes = {
   form: PropTypes.string.isRequired,
 };
 
+/**
+ * Form section for entering general contact information.
+ *
+ * @param {String} form - The id of the form associated with this section.
+ */
 function GeneralInfoSection({ form }) {
   return (
     <div>
@@ -78,6 +83,11 @@ GeneralInfoSection.propTypes = {
   form: PropTypes.string.isRequired,
 };
 
+/**
+ * Form section for entering education information.
+ *
+ * @param {String} form - The id of the form associated with this section.
+ */
 function EducationSection({ form }) {
   return (
     <div>
@@ -95,6 +105,9 @@ EducationSection.propTypes = {
   form: PropTypes.string.isRequired,
 };
 
+/**
+ * The main form.
+ */
 function MainForm() {
   const formName = "cvForm";
   return (
