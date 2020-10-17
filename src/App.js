@@ -1,9 +1,13 @@
 import React from "react";
+import GeneralInfo from "./components/form";
 
 function App() {
+  const formID = "cvForm";
   return (
     <div className="App">
-      <h1>Hello, world!</h1>
+      <form id={formID} name={formID}>
+        <GeneralInfo form={formID} />
+      </form>
     </div>
   );
 }
