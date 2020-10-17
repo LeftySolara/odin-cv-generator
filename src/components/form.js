@@ -41,6 +41,27 @@ TextInput.propTypes = {
   form: PropTypes.string.isRequired,
 };
 
+/**
+ * Component containing a date input and an associated label.
+ *
+ * @param {Object} props - Props to pass to the component.
+ * @param {String} props.name - The name to use for the label and input field.
+ * @param {String} props.form - The id of the form associated with the component.
+ */
+function DateInput({ name, form }) {
+  return (
+    <div>
+      <label htmlFor={name}>{name}</label>
+      <input type="date" id={name} name={name} form={form} />
+    </div>
+  );
+}
+
+DateInput.propTypes = {
+  name: PropTypes.string.isRequired,
+  form: PropTypes.string.isRequired,
+};
+
 function GeneralInfo({ form }) {
   return (
     <div>
@@ -57,4 +78,31 @@ GeneralInfo.propTypes = {
   form: PropTypes.string.isRequired,
 };
 
-export default GeneralInfo;
+function EducationInfo({ form }) {
+  return (
+    <div>
+      <h2>Education</h2>
+      <TextInput name="School Name" form={form} />
+      <TextInput name="Field of Study" form={form} />
+      <DateInput name="Date Started" form={form} />
+      <DateInput name="Date Ended" form={form} />
+      <ButtonBox form={form} />
+    </div>
+  );
+}
+
+EducationInfo.propTypes = {
+  form: PropTypes.string.isRequired,
+};
+
+function MainForm() {
+  const formName = "cvForm";
+  return (
+    <form id={formName} name={formName}>
+      <GeneralInfo form={formName} />
+      <EducationInfo form={formName} />
+    </form>
+  );
+}
+
+export default MainForm;
