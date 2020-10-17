@@ -62,7 +62,7 @@ DateInput.propTypes = {
   form: PropTypes.string.isRequired,
 };
 
-function GeneralInfo({ form }) {
+function GeneralInfoSection({ form }) {
   return (
     <div>
       <h2>General Information</h2>
@@ -74,11 +74,11 @@ function GeneralInfo({ form }) {
   );
 }
 
-GeneralInfo.propTypes = {
+GeneralInfoSection.propTypes = {
   form: PropTypes.string.isRequired,
 };
 
-function EducationInfo({ form }) {
+function EducationSection({ form }) {
   return (
     <div>
       <h2>Education</h2>
@@ -91,7 +91,7 @@ function EducationInfo({ form }) {
   );
 }
 
-EducationInfo.propTypes = {
+EducationSection.propTypes = {
   form: PropTypes.string.isRequired,
 };
 
@@ -99,8 +99,8 @@ function MainForm() {
   const formName = "cvForm";
   return (
     <form id={formName} name={formName}>
-      <GeneralInfo form={formName} />
-      <EducationInfo form={formName} />
+      <GeneralInfoSection form={formName} />
+      <EducationSection form={formName} />
     </form>
   );
 }
