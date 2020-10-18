@@ -136,6 +136,18 @@ function ExperienceSection({ form }) {
       <TextInput name="Company Name" form={form} />
       <TextInput name="Position" form={form} />
       <TextAreaInput name="Description" form={form} />
+      <DateInput name="Date Started" form={form} />
+      <DateInput name="Date Ended" form={form} />
+
+      <label htmlFor="currentEmployer">
+        <input
+          type="checkbox"
+          id="currentEmployer"
+          name="currentEmployer"
+          form={form}
+        />
+        I currently work here.
+      </label>
     </div>
   );
 }
