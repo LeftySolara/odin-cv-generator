@@ -1,6 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+/**
+ * Formatted display of the user's general information.
+ *
+ * @param {Object} props - Props to pass to the component.
+ * @param {String} props.name - The user's name.
+ * @param {String} props.email - The user's email address.
+ * @param {String} peops.phone - The user's phone number.
+ */
 function GeneralInfoDisplay(props) {
   const { name, email, phone } = props;
   return (
@@ -26,6 +34,16 @@ GeneralInfoDisplay.defaultProps = {
   phone: "",
 };
 
+/**
+ * Formatted display of the user's education info.
+ *
+ * @param {Object} props - Props to pass to the component.
+ * @param {String} props.school - The name of the user's school.
+ * @param {String} props.degree - The user's degree or field of study.
+ * @param {String} props.city - The city where {school} is located.
+ * @param {String} props.dateStarted - The date the user began studying at {school}.
+ * @param {String} props.dateEnded - The date the user finished studying at {school}.
+ */
 function EducationDisplay(props) {
   const { school, degree, city, dateStarted, dateEnded } = props;
   return (
@@ -59,6 +77,17 @@ EducationDisplay.defaultProps = {
   dateEnded: "",
 };
 
+/**
+ * Formatted display of the user's experience.
+ *
+ * @param {Object} props - Props to pass to the component.
+ * @param {String} props.company - The name of the user's employer.
+ * @param {String} props.position - The user's job title at {company}.
+ * @param {String} props.description - A brief description of the user's job duties in {position}.
+ * @param {String} props.city - The city where {company} is located.
+ * @param {String} props.dateStarted - The date the user began working at {company}.
+ * @param {String} props.dateEnded - The date the user finished working at {company}.
+ */
 function ExperienceDisplay(props) {
   const {
     company,
@@ -100,6 +129,11 @@ ExperienceDisplay.defaultProps = {
   dateEnded: "",
 };
 
+/**
+ * Formatted display of the information entered in the form.
+ *
+ * @param {Object} props - Props to pass to the component.
+ */
 function CVDisplay(props) {
   return (
     <div>
