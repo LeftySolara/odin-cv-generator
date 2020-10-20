@@ -7,7 +7,8 @@ import PropTypes from "prop-types";
  * @param {Object} props - Props to pass to the component.
  * @param {String} form - The id of the form associated with the component.
  */
-function ButtonBox({ form }) {
+function ButtonBox(props) {
+  const { form } = props;
   return (
     <div>
       <input type="submit" form={form} value="Submit" />
@@ -21,154 +22,300 @@ ButtonBox.propTypes = {
 };
 
 /**
- * Component containing a text input and an associated label.
- *
- * @param {Object} props - Props to pass to the component.
- * @param {String} props.name - The name to use for the label and input field.
- * @param {String} props.form - The id of the form associated with the component.
- */
-function TextInput({ name, form }) {
-  return (
-    <div>
-      <label htmlFor={name}>{name}</label>
-      <input type="text" id={name} name={name} form={form} />
-    </div>
-  );
-}
-
-TextInput.propTypes = {
-  name: PropTypes.string.isRequired,
-  form: PropTypes.string.isRequired,
-};
-
-/**
- * Component containing a textarea input and an associated label.
- *
- * @param {Object} props - Props to pass to the component.
- * @param {String} props.name - The name to use for the label and input field.
- * @param {String} props.form - The id of the form associated with the component.
- */
-function TextAreaInput({ name, form }) {
-  return (
-    <div>
-      <label htmlFor={name}>{name}</label>
-      <textarea name={name} form={form} />
-    </div>
-  );
-}
-
-TextAreaInput.propTypes = {
-  name: PropTypes.string.isRequired,
-  form: PropTypes.string.isRequired,
-};
-
-/**
- * Component containing a date input and an associated label.
- *
- * @param {Object} props - Props to pass to the component.
- * @param {String} props.name - The name to use for the label and input field.
- * @param {String} props.form - The id of the form associated with the component.
- */
-function DateInput({ name, form }) {
-  return (
-    <div>
-      <label htmlFor={name}>{name}</label>
-      <input type="date" id={name} name={name} form={form} />
-    </div>
-  );
-}
-
-DateInput.propTypes = {
-  name: PropTypes.string.isRequired,
-  form: PropTypes.string.isRequired,
-};
-
-/**
  * Form section for entering general contact information.
  *
- * @param {String} form - The id of the form associated with this section.
+ * @param {Object} props - Props to pass to the component.
+ * @param {String} props.name - The user's name.
+ * @param {String} props.email - The user's email address.
+ * @param {String} props.phone - The user's phone number.
+ * @param {Func} props.onChangeHandler - Callback function that triggers when form data is changed.
  */
-function GeneralInfoSection({ form }) {
+function GeneralInfoSection(props) {
+  const { name, email, phone, onChangeHandler } = props;
+
   return (
     <div>
       <h2>General Information</h2>
-      <TextInput name="Name" form={form} />
-      <TextInput name="Email" form={form} />
-      <TextInput name="Phone" form={form} />
+      <label htmlFor="name">
+        Name
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Full Name"
+          value={name}
+          onChange={onChangeHandler}
+        />
+      </label><br />
+      <label htmlFor="email">
+        Email Address
+        <input
+          type="text"
+          id="email"
+          name="email"
+          placeholder="Email Address"
+          value={email}
+          onChange={onChangeHandler}
+        />
+      </label><br />
+      <label htmlFor="phone">
+        Phone Number
+        <input
+          type="text"
+          id="phone"
+          name="phone"
+          placeholder="Phone Number"
+          value={phone}
+          onChange={onChangeHandler}
+        />
+      </label><br />
     </div>
   );
 }
 
 GeneralInfoSection.propTypes = {
-  form: PropTypes.string.isRequired,
+  name: PropTypes.string,
+  email: PropTypes.string,
+  phone: PropTypes.string,
+  onChangeHandler: PropTypes.func.isRequired,
+};
+
+GeneralInfoSection.defaultProps = {
+  name: "",
+  email: "",
+  phone: "",
 };
 
 /**
  * Form section for entering education information.
  *
- * @param {String} form - The id of the form associated with this section.
+ * @param {Object} props - Props to pass to the component.
+ * @param {String} props.school - Name of the user's school.
+ * @param {String} props.degree - The user's field of study.
+ * @param {String} props.dateStarted - The date the user started school.
+ * @param {String} props.dateEnded - The date the user stopped attending school.
+ * @param {Func} props.onChangeHandler - Callback function that triggers when form data is changed.
  */
-function EducationSection({ form }) {
+function EducationSection(props) {
+  const { school, degree, dateStarted, dateEnded, onChangeHandler } = props;
   return (
     <div>
       <h2>Education</h2>
-      <TextInput name="School Name" form={form} />
-      <TextInput name="Field of Study" form={form} />
-      <DateInput name="Date Started" form={form} />
-      <DateInput name="Date Ended" form={form} />
+      <label htmlFor="school">
+        School
+        <input
+          type="text"
+          id="school"
+          name="school"
+          placeholder="School Name"
+          value={school}
+          onChange={onChangeHandler}
+        />
+      </label><br />
+      <label htmlFor="degree">
+        Field of Study
+        <input
+          type="text"
+          id="degree"
+          name="degree"
+          placeholder="Field of Study"
+          value={degree}
+          onChange={onChangeHandler}
+        />
+      </label><br />
+      <label htmlFor="schoolDateStarted">
+        Date Started
+        <input
+          type="date"
+          id="schoolDateStarted"
+          name="schoolDateStarted"
+          value={dateStarted}
+          onChange={onChangeHandler}
+        />
+      </label><br />
+      <label htmlFor="schoolDateEnded">
+        Date Ended
+        <input
+          type="date"
+          id="schoolDateEnded"
+          name="schoolDateEnded"
+          value={dateEnded}
+          onChange={onChangeHandler}
+        />
+      </label><br />
     </div>
   );
 }
 
 EducationSection.propTypes = {
-  form: PropTypes.string.isRequired,
+  school: PropTypes.string,
+  degree: PropTypes.string,
+  dateStarted: PropTypes.string,
+  dateEnded: PropTypes.string,
+  onChangeHandler: PropTypes.func.isRequired,
+};
+
+EducationSection.defaultProps = {
+  school: "",
+  degree: "",
+  dateStarted: "",
+  dateEnded: "",
 };
 
 /**
  * Form section for entering experience information.
  *
- * @param {String} form - The id of the form associated with this section.
+ * @param {Object} props - Props to pass to the component.
+ * @param {String} props.company - The name of the company.
+ * @param {String} props.position - The position held at the company.
+ * @param {String} props.description - Description of job duties at {position}.
+ * @param {String} props.dateStarted - Date that the user started working at {company}.
+ * @param {String} props.dateEnded - Date that the user stopped working at {company}.
+ * @param {Bool} props.current - Whether the user still works at {company}.
  */
-function ExperienceSection({ form }) {
+function ExperienceSection(props) {
+  const {
+    company,
+    position,
+    description,
+    dateStarted,
+    dateEnded,
+    current,
+    onChangeHandler,
+  } = props;
+
   return (
     <div>
       <h2>Experience</h2>
-      <TextInput name="Company Name" form={form} />
-      <TextInput name="Position" form={form} />
-      <TextAreaInput name="Description" form={form} />
-      <DateInput name="Date Started" form={form} />
-      <DateInput name="Date Ended" form={form} />
-
+      <label htmlFor="company">
+        Company
+        <input
+          type="text"
+          id="company"
+          name="company"
+          placeholder="Company Name"
+          value={company}
+          onChange={onChangeHandler}
+        />
+      </label><br />
+      <label htmlFor="position">
+        Position
+        <input
+          type="text"
+          id="position"
+          name="position"
+          placeholder="Position"
+          value={position}
+          onChange={onChangeHandler}
+        />
+      </label><br />
+      <label htmlFor="description">
+        Description
+        <textarea
+          id="description"
+          name="description"
+          value={description}
+          onChange={onChangeHandler}
+        />
+      </label><br />
+      <label htmlFor="jobDateStarted">
+        Date Started
+        <input
+          type="date"
+          id="jobDateStarted"
+          name="jobDateStarted"
+          value={dateStarted}
+          onChange={onChangeHandler}
+        />
+      </label><br />
+      <label htmlFor="jobDateEnded">
+        Date Ended
+        <input
+          type="date"
+          id="jobDateEnded"
+          name="jobDateEnded"
+          value={dateEnded}
+          onChange={onChangeHandler}
+        />
+      </label><br />
       <label htmlFor="currentEmployer">
         <input
           type="checkbox"
           id="currentEmployer"
           name="currentEmployer"
-          form={form}
+          value={current}
         />
-        I currently work here.
-      </label>
+        This is my current employer.
+      </label><br />
     </div>
   );
 }
 
 ExperienceSection.propTypes = {
-  form: PropTypes.string.isRequired,
+  company: PropTypes.string,
+  position: PropTypes.string,
+  description: PropTypes.string,
+  dateStarted: PropTypes.string,
+  dateEnded: PropTypes.string,
+  current: PropTypes.bool,
+  onChangeHandler: PropTypes.func.isRequired,
+};
+
+ExperienceSection.defaultProps = {
+  company: "",
+  position: "",
+  description: "",
+  dateStarted: "",
+  dateEnded: "",
+  current: false,
 };
 
 /**
  * The main form.
  */
-function MainForm() {
-  const formName = "cvForm";
-  return (
-    <form id={formName} name={formName}>
-      <GeneralInfoSection form={formName} />
-      <EducationSection form={formName} />
-      <ExperienceSection form={formName} />
-      <ButtonBox form={formName} />
-    </form>
-  );
+class MainForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      email: "",
+      phone: "",
+      school: "",
+      degree: "",
+      schoolDateStarted: "",
+      schoolDateEnded: "",
+      company: "",
+      position: "",
+      description: "",
+      jobDateStarted: "",
+      jobDateEnded: "",
+      current: false,
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    });
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+  }
+
+  render() {
+    const formName = "cvForm";
+    return (
+      <form id={formName} name={formName} onSubmit={this.handleSubmit}>
+        <GeneralInfoSection onChangeHandler={this.handleChange} />
+        <EducationSection onChangeHandler={this.handleChange} />
+        <ExperienceSection onChangeHandler={this.handleChange} />
+        <ButtonBox form={formName} />
+      </form>
+    );
+  }
 }
 
 export default MainForm;
