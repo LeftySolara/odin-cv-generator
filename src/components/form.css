@@ -1,0 +1,44 @@
+input[type=text], input[type=date], textarea {
+    box-shadow: 0px 3px 3px 1px rgba(168,168,168,0.20), 0px 3px 3px 1px rgba(168,168,168,0.20);
+    margin-top: 4px;
+}
+
+input[type=submit] {
+    color: white;
+    background-color: #4299e1;
+    border-radius: 5px;
+    border-width: 0px;
+    font-weight: bold;
+}
+
+input[type=button] {
+    border-radius: 5px;
+    border-width: 0px;
+}
+
+#currentEmployer {
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.formSection {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.formSection label {
+    display: flex;
+    flex-direction: column;
+    clear: both;
+    margin-bottom: 10px;
+}
+
+.buttonBox {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: left;
+}
+
+.buttonBox input[type="Submit"] {
+    margin-right: 10px;
+}

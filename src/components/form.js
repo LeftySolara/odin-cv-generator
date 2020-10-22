@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CVDisplay from "./display";
+import "./form.css";
 
 /**
  * Submit and Cancel buttons for forms.
@@ -14,7 +15,7 @@ function ButtonBox(props) {
   const { form, editModeActive, onPressHandler } = props;
   if (editModeActive) {
     return (
-      <div>
+      <div className="buttonBox">
         <input type="submit" form={form} value="Submit" />
         <input type="button" form={form} value="Cancel" />
       </div>
@@ -48,7 +49,7 @@ function GeneralInfoSection(props) {
   const { name, email, phone, onChangeHandler } = props;
 
   return (
-    <div>
+    <div className="formSection">
       <h2>General Information</h2>
       <label htmlFor="name">
         Name
@@ -56,7 +57,7 @@ function GeneralInfoSection(props) {
           type="text"
           id="name"
           name="name"
-          placeholder="Full Name"
+          placeholder="Full name"
           value={name}
           onChange={onChangeHandler}
         />
@@ -67,7 +68,7 @@ function GeneralInfoSection(props) {
           type="text"
           id="email"
           name="email"
-          placeholder="Email Address"
+          placeholder="Email address"
           value={email}
           onChange={onChangeHandler}
         />
@@ -78,7 +79,7 @@ function GeneralInfoSection(props) {
           type="text"
           id="phone"
           name="phone"
-          placeholder="Phone Number"
+          placeholder="Phone number"
           value={phone}
           onChange={onChangeHandler}
         />
@@ -113,7 +114,7 @@ GeneralInfoSection.defaultProps = {
 function EducationSection(props) {
   const { school, degree, dateStarted, dateEnded, onChangeHandler } = props;
   return (
-    <div>
+    <div className="formSection">
       <h2>Education</h2>
       <label htmlFor="school">
         School
@@ -121,7 +122,7 @@ function EducationSection(props) {
           type="text"
           id="school"
           name="school"
-          placeholder="School Name"
+          placeholder="School name"
           value={school}
           onChange={onChangeHandler}
         />
@@ -132,7 +133,7 @@ function EducationSection(props) {
           type="text"
           id="degree"
           name="degree"
-          placeholder="Field of Study"
+          placeholder="Field of study"
           value={degree}
           onChange={onChangeHandler}
         />
@@ -199,7 +200,7 @@ function ExperienceSection(props) {
   } = props;
 
   return (
-    <div>
+    <div className="formSection">
       <h2>Experience</h2>
       <label htmlFor="company">
         Company
@@ -207,7 +208,7 @@ function ExperienceSection(props) {
           type="text"
           id="company"
           name="company"
-          placeholder="Company Name"
+          placeholder="Company name"
           value={company}
           onChange={onChangeHandler}
         />
@@ -229,6 +230,7 @@ function ExperienceSection(props) {
           id="description"
           name="description"
           value={description}
+          placeholder="Description of job duties"
           onChange={onChangeHandler}
         />
       </label><br />
@@ -252,7 +254,7 @@ function ExperienceSection(props) {
           onChange={onChangeHandler}
         />
       </label><br />
-      <label htmlFor="currentEmployer">
+      <label id="currentEmployer" htmlFor="currentEmployer">
         <input
           type="checkbox"
           id="currentEmployer"
@@ -349,7 +351,7 @@ class MainForm extends React.Component {
 
     if (editModeActive) {
       return (
-        <form id={formName} name={formName} onSubmit={this.handleSubmit}>
+        <form id={formName} className="formComponent" name={formName} onSubmit={this.handleSubmit}>
           <GeneralInfoSection
             name={name}
             email={email}

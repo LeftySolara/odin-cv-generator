@@ -1,5 +1,6 @@
 import React from "react";
 import MainForm from "./components/form";
+import "./app.css";
 
 function App() {
   return (
