@@ -1,24 +1,38 @@
 import React from "react";
 import PropTypes from "prop-types";
+import CVDisplay from "./display";
 
 /**
  * Submit and Cancel buttons for forms.
  *
  * @param {Object} props - Props to pass to the component.
- * @param {String} form - The id of the form associated with the component.
+ * @param {String} props.form - The id of the form associated with the component.
+ * @param {Bool} props.editModeActive - Whether the form is in edit mode.
+ * @param {Func} props.onPressHandler - Callback function that triggers when the "edit" button is pressed.
  */
 function ButtonBox(props) {
-  const { form } = props;
-  return (
-    <div>
-      <input type="submit" form={form} value="Submit" />
-      <input type="button" form={form} value="Cancel" />
-    </div>
-  );
+  const { form, editModeActive, onPressHandler } = props;
+  if (editModeActive) {
+    return (
+      <div>
+        <input type="submit" form={form} value="Submit" />
+        <input type="button" form={form} value="Cancel" />
+      </div>
+    );
+  }
+  else {
+    return (
+      <div>
+        <input type="button" value="Edit" onClick={onPressHandler} />
+      </div>
+    );
+  }
 }
 
 ButtonBox.propTypes = {
   form: PropTypes.string.isRequired,
+  editModeActive: PropTypes.bool.isRequired,
+  onPressHandler: PropTypes.func.isRequired,
 };
 
 /**
@@ -277,6 +291,7 @@ class MainForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      editModeActive: true,
       name: "",
       email: "",
       phone: "",
@@ -292,6 +307,7 @@ class MainForm extends React.Component {
       current: false,
     };
     this.handleChange = this.handleChange.bind(this);
+    this.changeMode = this.changeMode.bind(this);
   }
 
   handleChange(event) {
@@ -302,19 +318,88 @@ class MainForm extends React.Component {
   }
 
   handleSubmit = (event) => {
+    console.log(this.state);
+    this.changeMode();
     event.preventDefault();
+  }
+
+  changeMode() {
+    const { editModeActive } = this.state;
+    this.setState({editModeActive: !editModeActive});
   }
 
   render() {
     const formName = "cvForm";
-    return (
-      <form id={formName} name={formName} onSubmit={this.handleSubmit}>
-        <GeneralInfoSection onChangeHandler={this.handleChange} />
-        <EducationSection onChangeHandler={this.handleChange} />
-        <ExperienceSection onChangeHandler={this.handleChange} />
-        <ButtonBox form={formName} />
-      </form>
-    );
+    const {
+      editModeActive,
+      name,
+      email,
+      phone,
+      school,
+      degree,
+      city,
+      schoolDateStarted,
+      schoolDateEnded,
+      company,
+      position,
+      description,
+      jobDateStarted,
+      jobDateEnded,
+      current 
+    } = this.state;
+
+    if (editModeActive) {
+      return (
+        <form id={formName} name={formName} onSubmit={this.handleSubmit}>
+          <GeneralInfoSection
+            name={name}
+            email={email}
+            phone={phone}
+            onChangeHandler={this.handleChange}
+          />
+          <EducationSection
+            school={school}
+            degree={degree}
+            dateStarted={schoolDateStarted}
+            dateEnded={schoolDateEnded}
+            onChangeHandler={this.handleChange}
+          />
+          <ExperienceSection
+            company={company}
+            position={position}
+            description={description}
+            dateStarted={jobDateStarted}
+            dateEnded={jobDateEnded}
+            current={current}
+            onChangeHandler={this.handleChange}
+          />
+          <ButtonBox form={formName} editModeActive={editModeActive} onPressHandler={this.changeMode} />
+        </form>
+      );
+    }
+    else {
+      return (
+        <div>
+          <CVDisplay
+            name={name}
+            email={email}
+            phone={phone}
+            school={school}
+            degree={degree}
+            schoolCity={city}
+            schoolDateStarted={schoolDateStarted}
+            schoolDateEnded={schoolDateEnded}
+            company={company}
+            position={position}
+            description={description}
+            jobCity={city}
+            jobDateStarted={jobDateStarted}
+            jobDateEnded={jobDateEnded}
+          />
+          <ButtonBox form={formName} editModeActive={editModeActive} onPressHandler={this.changeMode} />
+        </div>
+      );
+    }
   }
 }
 

@@ -135,27 +135,40 @@ ExperienceDisplay.defaultProps = {
  * @param {Object} props - Props to pass to the component.
  */
 function CVDisplay(props) {
+  const {
+    name,
+    email,
+    phone,
+    school,
+    degree,
+    schoolCity,
+    schoolDateStarted,
+    schoolDateEnded,
+    company,
+    position,
+    description,
+    jobCity,
+    jobDateStarted,
+    jobDateEnded,
+  } = props;
+
   return (
     <div>
-      <GeneralInfoDisplay
-        name="First Last"
-        email="email@example.com"
-        phone="(123) 456-789"
-      />
+      <GeneralInfoDisplay name={name} email={email} phone={phone} />
       <EducationDisplay
-        school="School"
-        degree="Degree"
-        city="City"
-        dateStarted="1/1/2020"
-        dateEnded="1/2/2020"
+        school={school}
+        degree={degree}
+        city={schoolCity}
+        dateStarted={schoolDateStarted}
+        dateEnded={schoolDateEnded}
       />
       <ExperienceDisplay
-        compan="Company"
-        position="Position"
-        description="Description"
-        city="City"
-        dateStarted="1/1/2020"
-        dateEnded="1/2/2020"
+        company={company}
+        position={position}
+        description={description}
+        city={jobCity}
+        dateStarted={jobDateStarted}
+        dateEnded={jobDateEnded}
       />
     </div>
   );
