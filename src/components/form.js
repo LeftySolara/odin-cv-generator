@@ -318,7 +318,6 @@ class MainForm extends React.Component {
   }
 
   handleSubmit = (event) => {
-    console.log(this.state);
     this.changeMode();
     event.preventDefault();
   }
