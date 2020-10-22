@@ -174,4 +174,38 @@ function CVDisplay(props) {
   );
 }
 
+CVDisplay.propTypes = {
+  name: PropTypes.string,
+  email: PropTypes.string,
+  phone: PropTypes.string,
+  school: PropTypes.string,
+  degree: PropTypes.string,
+  schoolCity: PropTypes.string,
+  schoolDateStarted: PropTypes.string,
+  schoolDateEnded: PropTypes.string,
+  company: PropTypes.string,
+  position: PropTypes.string,
+  description: PropTypes.string,
+  jobCity: PropTypes.string,
+  jobDateStarted: PropTypes.string,
+  jobDateEnded: PropTypes.string,
+};
+
+CVDisplay.defaultProps = {
+  name: "",
+  email: "",
+  phone: "",
+  school: "",
+  degree: "",
+  schoolCity: "",
+  schoolDateStarted: "",
+  schoolDateEnded: "",
+  company: "",
+  position: "",
+  description: "",
+  jobCity: "",
+  jobDateStarted: "",
+  jobDateEnded: "",
+};
+
 export default CVDisplay;
